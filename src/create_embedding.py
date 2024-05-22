@@ -14,9 +14,7 @@ from datasets import load_dataset
 # Hyperparameters
 N_EMBEDDING = 300  # Dimensionality of the word vectors
 BASE_STD = 0.01  # Standard deviation for initializing word vectors
-BATCH_SIZE = (
-    128  # Number of samples per batch -- try smaller batch sizes -- otherwise, too long
-)
+BATCH_SIZE = 2048  # Number of samples per batch -- try smaller batch sizes -- otherwise, too long
 NUM_EPOCH = 100  # Number of epochs (iterations over the entire dataset)
 MIN_WORD_OCCURENCES = (
     5  # Minimum number of occurrences for a word to be included in the vocabulary
@@ -50,7 +48,7 @@ class WordIndexer:
         self.word_to_index = {oov_word: 0}
         self.index_to_word = [oov_word]
         self.word_occurrences = {}
-        self.re_words = re.compile(r"\b[a-zA-Z]{2,}\b")
+        # self.re_words = re.compile(r"\b[a-zA-Z]{2,}\b")
 
     def _get_or_set_word_to_index(self, word):
         try:
@@ -67,7 +65,8 @@ class WordIndexer:
 
     def fit_transform(self, texts):
         # use a tokenizer from XLM-R -- more suitable for different languages
-        l_words = [list(self.re_words.findall(sentence.lower())) for sentence in texts]
+        # l_words = [list(self.re_words.findall(sentence.lower())) for sentence in texts]
+        l_words = [sentence.lower().split() for sentence in texts]
         word_occurrences = Counter(word for words in l_words for word in words)
 
         self.word_occurrences = {
@@ -219,7 +218,7 @@ def train_model(data: GloveDataset):
 
 if __name__ == "__main__":
     logging.info("Fetching data")
-    dataset = load_dataset("cc100", "so")
+    dataset = load_dataset("cc100", "gu", trust_remote_code=True)
     texts = dataset["train"]["text"]
     logging.info("Build dataset")
     glove_data = GloveDataset(texts, right_window=RIGHT_WINDOW)
