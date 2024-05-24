@@ -2,7 +2,7 @@
 
 This project aims to enhance GloVe embeddings for low-resource languages by leveraging graph knowledge. Below is a table detailing the languages involved in the project along with their dataset sizes and classification.
 
-## Language Dataset Details
+## Language Data Details
 
 | ISO   | Language Name     | Dataset Size () | Class |Glove Emb-s|Vocab Size|
 |-------|-------------------|--------------|-------|-----------|-----------|
@@ -93,6 +93,15 @@ This project aims to enhance GloVe embeddings for low-resource languages by leve
 | uk    | Ukrainian         | 14G          | 3     |-----------|-----------|
 | ro    | Romanian          | 16G          | 3     |-----------|-----------|
 | id    | Indonesian        | 36G          | 3     |-----------|-----------|
+
+## ConceptNet Data Details
+
+For this project, we extracted all data from the [ConceptNet](https://github.com/commonsense/conceptnet5/wiki/Downloads) database. The extraction process involved several steps to clean and analyze the data from the official ConceptNet dump available [here](https://s3.amazonaws.com/conceptnet/downloads/2019/edges/conceptnet-assertions-5.7.0.csv.gz).
+
+The final extracted dataset is a JSON file representing a dictionary with language codes and start and end edges for each language. Start edges represent the unique words in a target language, while end edges are the words related to the start edges through various types of relationships. The relationship types and sources are not extracted.
+
+The dataset, as well as details on the amount of extracted data for each language, are available on [Hugging Face](https://huggingface.co/datasets/DGurgurov/conceptnet_all).
+
 
 ## Contributing
 
