@@ -1,6 +1,6 @@
-# Retrofitting GloVe Embeddings for Low Resource Languages using Graph Knowledge
+# Enhancing GloVe Embeddings for Low-resource Languages with Graph Knowledge
 
-This project aims to enhance GloVe embeddings for low-resource languages by leveraging graph knowledge. Below is a table detailing the languages involved in the project along with their dataset sizes and classification.
+This project aims to enhance GloVe embeddings for low-resource languages by leveraging graph knowledge, as well as to provide a centralized repository with pre-trained static word embeddings across diverse languages. Below is a table detailing the languages involved in the project along with their dataset sizes and classification.
 
 ## Language Data Details
 
